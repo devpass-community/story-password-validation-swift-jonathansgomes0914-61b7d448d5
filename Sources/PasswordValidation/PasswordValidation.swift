@@ -18,6 +18,15 @@ public struct PasswordValidation {
 
     func isValid(password: String) -> Bool {
 
+        
+        if let pattern = try? NSRegularExpression(pattern: "^[0-9]{6}$") {
+            let results = pattern.matches(
+                in: password, 
+                range: NSRange(
+                    location: 0, 
+                    length: password.count))
+            return results.count == 1
+        }
         return false
     }
 }
